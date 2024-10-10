@@ -1,8 +1,44 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# StudyComrade Batch 3
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Follow these instructions to set up the project on your local machine.
+
+### 1. Clone the Repository
+
+To download all the files from this repository to your local machine, run the following command:
+
+```bash
+git clone https://github.com/shaik-sadhiks007/StudyComrade_batch3.git
+```
+
+### 2. Navigate to the Frontend Path
+
+Move into the project directory:
+
+```bash
+cd StudyComrade_batch3
+```
+
+### 3. Install Dependencies
+
+Install the necessary packages required for the project using `npm`:
+
+```bash
+npm install
+```
+
+### 4. Start the Server
+
+To start the development server, run:
+
+```bash
+npm run dev
+```
+
+This will start the application locally.
+
+---
+
+You are now ready to work on the project!
