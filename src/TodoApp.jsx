@@ -92,6 +92,7 @@ export default function TodoApp() {
 
       (eachTodo.id == todoId) ? { ...eachTodo, isEditing: false, text : updateTodo } : eachTodo)
 
+      setUpdateTodo('')
 
     setTodo(updateComplete)
   }
