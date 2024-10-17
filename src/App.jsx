@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Products from './Products';
 import Login from './Login';
 import ProductDetail from './ProductDetail';
-
+import BootstrapClass from "./BootstrapClass";
+import TodoApp from "./TodoApp";
 
 function App() {
 
@@ -34,6 +35,10 @@ function App() {
         <Route path='/products' element={<Products test={products}/>} />
 
         <Route path='/products/:id' element={<ProductDetail product={products}/>} />
+
+        <Route path='/bootstrap' element={<BootstrapClass />} />
+
+        <Route path='/todo' element={<TodoApp />} />
 
       </Routes>
 

@@ -35,7 +35,7 @@ function Products({ test }) {
 
                         filteredProducts.length > 0 ? (
                             filteredProducts.map((product, index) => (
-                                <div key={index} className="col-3 mb-4">
+                                <div key={index} className="col-xs-12 col-sm-12 col-md-4 col-lg-3 mb-4">
                                     <div style={{ border: '1px solid #ccc', padding: '10px', textAlign: 'center' }}>
                                         <Link to={`/products/${product.id}`}>
                                             <div>
