@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { fetchProducts } from "./slices/productSlice";
 
 function Products({ test }) {
 
@@ -14,17 +16,48 @@ function Products({ test }) {
 
     }
 
+    const token = localStorage.getItem('token')
+
+    const navigate = useNavigate()
+
+    console.log('token', token)
+
+    const prod = useSelector((state) => state.products.products)
+
+    console.log(prod, 'products by redux');
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (!token) {
+
+            navigate('/')
+
+        }
+        dispatch(fetchProducts())
+    }, [])
+
 
     const filteredProducts = products.filter(each => each.title.toLowerCase().includes(inputSearch.toLowerCase()))
 
 
-    console.log(filteredProducts, 'filter')
+    // console.log(filteredProducts, 'filter')
+
+    const handleLogout = () => {
+        localStorage.removeItem('token')
+        navigate('/')
+    }
 
     return (
 
         <>
             <div className="container">
-                <h1 className="text-center">Products</h1>
+                <div className="d-flex">
+                    <h1 className="text-center">Products</h1>
+                    <button onClick={handleLogout}>logout</button>
+                </div>
+
+
                 <div className="text-center my-5">
                     <input type="text" placeholder="Enter the product title" onChange={(e) => handleSearch(e)} />
                 </div>
@@ -58,7 +91,7 @@ function Products({ test }) {
                                 </div>
                             ))
                         ) : (<h1> no products available</h1>)
-                   
+
                     }
                 </div>
             </div>

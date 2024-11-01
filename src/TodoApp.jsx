@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import EachTodo from './EachTodo';
 
 export default function TodoApp() {
 
@@ -9,6 +10,7 @@ export default function TodoApp() {
   const [counter, setCounter] = useState(1)
 
   const [todo, setTodo] = useState([])
+
 
   // console.log(enteredText, 'enteredtext')
 
@@ -90,9 +92,9 @@ export default function TodoApp() {
 
     const updateComplete = todo.map((eachTodo) =>
 
-      (eachTodo.id == todoId) ? { ...eachTodo, isEditing: false, text : updateTodo } : eachTodo)
+      (eachTodo.id == todoId) ? { ...eachTodo, isEditing: false, text: updateTodo } : eachTodo)
 
-      setUpdateTodo('')
+    setUpdateTodo('')
 
     setTodo(updateComplete)
   }
@@ -100,76 +102,48 @@ export default function TodoApp() {
 
 
 
-const handleCheckbox = (todoId) => {
+  const handleCheckbox = (todoId) => {
 
-  const updateComplete = todo.map((eachTodo) =>
+    const updateComplete = todo.map((eachTodo) =>
 
-    (eachTodo.id == todoId) ? { ...eachTodo, completed: !eachTodo.completed } : eachTodo)
-
-
-  setTodo(updateComplete)
+      (eachTodo.id == todoId) ? { ...eachTodo, completed: !eachTodo.completed } : eachTodo)
 
 
-}
-return (
-  <div className='text-center'>
+    setTodo(updateComplete)
 
-    <h1 >Todo List CRUD</h1>
 
-    <div className='d-flex justify-content-center'>
-      <input type="text"
-        placeholder='enter the todo title'
-        onChange={(e) => setEnteredText(e.target.value)}
-        value={enteredText}
-      />
-      <button className='btn btn-success ms-2' onClick={handleAddTodo} >Add Todo</button>
+  }
+  return (
+    <div className='text-center'>
+
+      <h1 >Todo List CRUD</h1>
+
+      <div className='d-flex justify-content-center'>
+        <input type="text"
+          placeholder='enter the todo title'
+          onChange={(e) => setEnteredText(e.target.value)}
+          value={enteredText}
+        />
+        <button className='btn btn-success ms-2' onClick={handleAddTodo} >Add Todo</button>
+      </div>
+
+      <div>
+        {
+          todo.length === 0 ? (
+            <h3> no todos available</h3>
+          ) :
+            (
+              todo.map((each, index) => (
+
+                <EachTodo each={each} handleCheckbox={handleCheckbox} setEnteredText={setEnteredText}  
+                setUpdateTodo={setUpdateTodo} handleSave={handleSave} handleEdit={handleEdit} 
+                handleDelete={handleDelete} />
+
+              ))
+            )
+        }
+      </div>
+
     </div>
-
-    <div>
-      {
-        todo.length === 0 ? (
-          <h3> no todos available</h3>
-        ) :
-          (
-            todo.map((each, index) => (
-
-              <div className='my-3' key={index}>
-                <input type='checkbox'
-                  checked={each.completed}
-                  placeholder='enter the todo title'
-                  onClick={() => handleCheckbox(each.id)}
-                  onChange={(e) => setEnteredText(e.target.value)}
-                />
-
-                {
-                  each.isEditing ? (
-
-                    <input type='text' value={updateTodo} onChange={(e) => setUpdateTodo(e.target.value)} />
-
-                  ) : (
-                    <span>{each.text}</span>
-                  )
-                }
-
-
-
-
-                {
-                  each.isEditing ? (
-                    <button onClick={() => handleSave(each.id)}>Save</button>
-                  ) : (
-                    <button onClick={() => handleEdit(each.id)}>Edit</button>
-                  )
-                }
-
-                <button onClick={() => handleDelete(each.id)}>delete</button>
-              </div>
-
-            ))
-          )
-      }
-    </div>
-
-  </div>
-);
+  );
 }
